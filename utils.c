@@ -77,15 +77,15 @@ t_fracdata *construct_fracdata(double zoom, double x, double y, char ** argv)
 								&img->endian);
 
 	name = get_fractal_name(argv);
+	data = (t_fracdata*) malloc(sizeof(t_fracdata));
 	if (!ft_strcmp(name, "julia"))
 	{
 	printf("i = %s, j = %s\n", argv[2], argv[3]);
 		data->i = atod(argv[2]);
 	printf("i = %f, j = %s\n", data->i, argv[3]);
-	data->j = atod(argv[3]);
+		data->j = atod(argv[3]);
 	}
 	printf("after atod\n");
-	data = (t_fracdata*) malloc(sizeof(t_fracdata));
 	data->mlx = mlx;
 	data->mlx_win = mlx_new_window(mlx, 1920, 1080, "Fract-ol");
 	data->img = img;

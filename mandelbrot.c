@@ -35,14 +35,24 @@ int	get_color(double line, double column, t_fracdata *data, double z)
 	int color;
 	double real;
 	double imag;
-
-	real = (line / z) + data->x;
-	imag = (column / z) + data->y;
-	point = &(complex) {
-		.r = real,
-		.i = imag,
-	};
-
+	if (!ft_strcmp(data->name, "mandelbrot"))
+	{
+		real = (line / z) + data->x;
+		imag = (column / z) + data->y;
+		point = &(complex) {
+			.r = real,
+			.i = imag,
+		};
+	}
+	if (!ft_strcmp(data->name, "julia"))
+	{
+		real = 3 * (data->x - line/2) / (line/2);
+		imag = 2 * (data->y - column/2) / (column/2);
+		point = &(complex) {
+			.r = real,
+			.i = imag,
+		};
+	}
 	if(!ft_strcmp(data->name, "mandelbrot"))
 		in_set = calc_mandelbrot_point(*point, 1000);
 	if(!ft_strcmp(data->name, "julia"))
